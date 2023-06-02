@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Search Results</title>
+  <div th:replace="fragments :: header" />
+</head>
+
+<body>
+<div th:replace="fragments :: navigation" />
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3 class="mt-5 mb-4">Search Results</h3>
+
+      <div th:if="${searchResults.empty}">
+        <p>No results found.</p>
+      </div>
+
+      <div th:if="${not searchResults.empty}">
+        <div class="list-group">
+          <div th:each="doc : ${searchResults}" class="list-group-item">
+            <h5 class="mb-1" th:text="${doc.headline.main}">Headline</h5>
+            <p class="mb-1" th:text="${doc.snippet}">Snippet</p>
+            <a th:href="${doc.webUrl}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments :: footer" />
+</body>
+
+</html>
